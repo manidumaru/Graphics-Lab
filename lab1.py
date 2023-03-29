@@ -1,3 +1,8 @@
+# Mani Dumaru
+# Roll no: 15
+# CE-2019
+# Computer Graphics Lab-1
+
 import math
 import numpy
 
