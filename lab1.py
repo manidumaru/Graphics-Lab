@@ -6,6 +6,7 @@
 import math
 import numpy
 
+from sympy import symbols, Eq, solve
 from OpenGL.GL import *
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
@@ -19,6 +20,10 @@ vertices1 = (
     (0,0.8),
     (0.6,0.4),
 ) 
+
+theta_range = numpy.arange(0.0, 360, 0.5)
+
+sun_triangles = []
 
 upper_vertices = (
     (-0.01,0.39),
@@ -106,12 +111,51 @@ def flag():
     glBegin(GL_TRIANGLE_FAN)
     cx = circle_sun[0]
     cy = circle_sun[1]
-    r = 0.08
-    for i in range(0,360):   
+    r = 0.07
+    for i in theta_range:   
         theta = 2 * 3.1415926 * float(i) / float(360)
         x = r * math.cos(theta)
         y = r * math.sin(theta)
         glVertex2f((x + cx), (y + cy))
+        if (i % 22.5 == 0):
+            sun_triangles.append((x,y))
+    glEnd()
+    ############### Sun Triangles #################
+    glBegin(GL_TRIANGLES)
+    hyp = 0.035
+    x3, y3 = symbols('x3 y3')
+    for i in range(0, len(sun_triangles)):
+        if (i < len(sun_triangles)-1):
+            A = sun_triangles[i]
+            B = sun_triangles[i+1]
+        elif (i == len(sun_triangles)-1):
+            A = sun_triangles[i]
+            B = sun_triangles[0]
+
+        x1 = A[0]
+        y1 = A[1]
+        x2 = B[0]
+        y2 = B[1]
+        
+        eq1 = Eq(pow(hyp,2) - pow((x3-x1),2) - pow((y3-y1),2))
+        eq2 = Eq(pow(hyp,2) - pow((x3-x2),2) - pow((y3-y2),2))
+        result = solve((eq1, eq2), (x3, y3))
+        result1 = result[0]
+        result2 = result[1]
+
+        if(x1 <= 0 and x2 <= 0):
+            C = result1
+        else:
+            C = result2
+        
+        if(i == 4):
+            C = result1
+        print(C)
+        a = C[0]
+        b = C[1]
+        glVertex2f(x1+cx,y1+cy)
+        glVertex2f(x2+cx,y2+cy)
+        glVertex2f(a+cx,b+cy)
     glEnd()
     glFlush()
 
