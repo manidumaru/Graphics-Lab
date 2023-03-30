@@ -24,6 +24,7 @@ vertices1 = (
 theta_range = numpy.arange(0.0, 360, 0.5)
 
 sun_triangles = []
+moon_spikes = []
 
 upper_vertices = (
     (-0.01,0.39),
@@ -90,7 +91,7 @@ def flag():
     glBegin(GL_TRIANGLE_FAN)
     cx = circle_moon[0]
     cy = circle_moon[1]
-    r = 0.08
+    r = 0.074
     for i in range(180,360):   
         theta = 3.1415926 * float(i) / float(180)
         x = r * math.cos(theta)
@@ -100,24 +101,68 @@ def flag():
     glBegin(GL_TRIANGLE_FAN)
     cx = circle_moon[0]
     cy = circle_moon[1]
-    r = 0.045
-    for i in range(0,360):   
-        theta = 3.1415926 * float(i) / float(360)
+    r = 0.04
+    for i in range(0,180):   
+        theta = 3.1415926 * float(i) / float(180)
         x = r * math.cos(theta)
         y = r * math.sin(theta)
         glVertex2f((x + cx), (y + cy))
+        if (i % 30 == 0):
+            moon_spikes.append((x,y))
+        
+    print(f"moon_spikes = {len(moon_spikes)}")
+    glEnd()
+    glBegin(GL_TRIANGLES)
+    hyp = 0.024
+    x3, y3 = symbols('x3 y3')
+    for i in range(0, 6):
+        if (i < 5):
+            A = moon_spikes[i]
+            B = moon_spikes[i+1]
+            print(f"{i} {B[0]}")
+        elif(i == 5):
+            A = moon_spikes[i]
+            B = (-r,0)
+            print(f"{i} fuck {B[0]}")
+
+        x1 = A[0]
+        y1 = A[1]
+        x2 = B[0]
+        y2 = B[1]
+
+        eq1 = Eq(pow(hyp,2) - pow((x3-x1),2) - pow((y3-y1),2))
+        eq2 = Eq(pow(hyp,2) - pow((x3-x2),2) - pow((y3-y2),2))
+        result = solve((eq1, eq2), (x3, y3))
+        print(f"solving ({round(x1,3)}, {round(y1,3)}) and ({round(x2,3)}, {round(y2,3)}) gave {result}")
+        result1 = result[0]
+        result2 = result[1]
+
+        if(x1 <= 0 and x2 <= 0):
+            C = result1
+        else:
+            C = result2
+        
+        if(i == 3):
+            C = result1
+        a = C[0]
+        b = C[1]
+
+        glVertex2f(x1+cx,y1+cy)
+        glVertex2f(x2+cx,y2+cy)
+        glVertex2f(a+cx,b+cy)
     glEnd()
     ############### Sun #####################
+    glColor3f(1.0,1.0,1.0)
     glBegin(GL_TRIANGLE_FAN)
     cx = circle_sun[0]
     cy = circle_sun[1]
-    r = 0.07
+    r = 0.066
     for i in theta_range:   
         theta = 2 * 3.1415926 * float(i) / float(360)
         x = r * math.cos(theta)
         y = r * math.sin(theta)
         glVertex2f((x + cx), (y + cy))
-        if (i % 22.5 == 0):
+        if (i % 30 == 0):
             sun_triangles.append((x,y))
     glEnd()
     ############### Sun Triangles #################
@@ -148,9 +193,8 @@ def flag():
         else:
             C = result2
         
-        if(i == 4):
+        if(i == 3):
             C = result1
-        print(C)
         a = C[0]
         b = C[1]
         glVertex2f(x1+cx,y1+cy)
