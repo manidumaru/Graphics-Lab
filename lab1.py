@@ -123,7 +123,7 @@ def flag():
         elif(i == 5):
             A = moon_spikes[i]
             B = (-r,0)
-            print(f"{i} fuck {B[0]}")
+            print(f"{i} {B[0]}")
 
         x1 = A[0]
         y1 = A[1]
