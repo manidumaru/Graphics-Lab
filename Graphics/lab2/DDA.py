@@ -1,39 +1,26 @@
 import numpy
-import math
 
 from OpenGL.GL import *
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
 
-# center = (0.1, 0.1)
-radius = 0.4
-stepSize = 0.01
+x = (0.5,0.5)
+y = (0.7,0.7)
 
-def circleMidPoint():
+def DDA():
     glClear(GL_COLOR_BUFFER_BIT)
-    glColor3f(0.0,1.0,1.0)
+    glColor3f(1.0,1.0,0.0)
     glPointSize(3)
-    x = 0
-    y = radius
-
-    while(x<=y):
-        plot(x,y)
-        x = x + stepSize
-        fv = (pow(x,2) + pow((y-(0.01/2)),2) - pow(radius,2))
-        # print(x, y, fv)
-
-        if(fv < 0):
-            # print("fv thulo xa")
-            y = y - stepSize
-
+    i = 0
+    while (i<=1):
+        glBegin(GL_POINTS)
+        glVertex2f(i,0)
+        glVertex2f(-i,0)
+        glVertex2f(0,i)
+        glVertex2f(0,-i)
+        i+=0.01
+        glEnd()
     glFlush()
-    
-def plot(x,y):
-    print(x,y)
-    glBegin(GL_POINTS)
-    glVertex2f(x,y)
-    glEnd()
-    
 
 def main():
     glutInit()
@@ -44,7 +31,9 @@ def main():
     size = numpy.ndarray.tolist(glGetIntegerv(GL_VIEWPORT))
     size = size[2],size[3]
     print(f"Your Window Resolution is: {size}")
-    glutDisplayFunc(circleMidPoint)
+    glutDisplayFunc(DDA)
     glutMainLoop()
 
 main()
+
+
