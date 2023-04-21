@@ -5,10 +5,10 @@ from OpenGL.GLUT import *
 from OpenGL.GLU import *
 
 def DDA():
-    x1 = 150
-    y1 = 150
-    x2 = 300
-    y2 = 300
+    x1 = 126
+    y1 = 267
+    x2 = 306
+    y2 = 410
     glClear(GL_COLOR_BUFFER_BIT)
     glColor3f(1.0,1.0,0.0)
     glPointSize(3)
