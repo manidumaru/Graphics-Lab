@@ -7,8 +7,8 @@ from OpenGL.GLU import *
 
 def ellipse():
     center = (250, 250)
-    r_x = 10
-    r_y = 8
+    r_x = 80
+    r_y = 50
     x = 0
     y = r_y
     glClear(GL_COLOR_BUFFER_BIT)
