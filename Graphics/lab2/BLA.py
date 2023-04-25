@@ -5,10 +5,10 @@ from OpenGL.GLUT import *
 from OpenGL.GLU import *
 
 def BLA():
-    x1 = 300
-    y1 = 370
-    x2 = 300
-    y2 = 100
+    x1 = 118
+    y1 = 98
+    x2 = 409
+    y2 = 382
     glClear(GL_COLOR_BUFFER_BIT)
     glColor3f(0.0,1.0,1.0)
     glPointSize(3)
@@ -66,7 +66,7 @@ def main():
     glutInitDisplayMode(GLUT_RGB)
     glutInitWindowSize(500, 500)
     glutInitWindowPosition(100, 100)
-    glutCreateWindow("Mani_Dumaru_(15)_Lab2_DDA")
+    glutCreateWindow("Mani_Dumaru_(15)_Lab2_BLA")
     gluOrtho2D(0.0,500.0,0.0,500.0)
     size = numpy.ndarray.tolist(glGetIntegerv(GL_VIEWPORT))
     size = size[2],size[3]
