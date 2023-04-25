@@ -7,13 +7,13 @@ from OpenGL.GLU import *
 
 def ellipse():
     center = (250, 250)
-    r_x = 90
-    r_y = 60
+    r_x = 10
+    r_y = 8
     x = 0
     y = r_y
     glClear(GL_COLOR_BUFFER_BIT)
     glColor3f(0.0,1.0,1.0)
-    glPointSize(3)
+    # glPointSize(3)
     
     while(x <= r_x and y >= 0):
         print(x,y)
@@ -36,10 +36,6 @@ def ellipse():
             d_parameter = (r_x**2 * y**2) + (r_y**2 * (x+1/2)**2) - (r_x**2 * r_y**2)
             if d_parameter < 0:
                 x += 1
-        
-
-        
-
 
 def main():
     glutInit()
