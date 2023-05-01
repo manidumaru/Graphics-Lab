@@ -1,3 +1,5 @@
+
+######### Midpoint Ellipse Drawing Algorithm ############
 import numpy
 
 from OpenGL.GL import *
