@@ -12,9 +12,10 @@ def circle():
     y = radius
     radius 
     glClear(GL_COLOR_BUFFER_BIT)
-    glColor3f(0.0,1.0,0.0)
+    glColor3f(0.0,1.0,1.0)
     glPointSize(3)
 
+    p_k = 1-radius
     while(x < y):
         glBegin(GL_POINTS)
         glVertex2f(x + center[0], y + center[1])
@@ -27,9 +28,11 @@ def circle():
         glVertex2f(-y + center[1], -x + center[0])
         glEnd()
         x += 1
-        d_parameter = (x**2) + ((y-1/2)**2) - (radius**2)
-        if (d_parameter > 0):
+        if (p_k < 0):
+            p_k = p_k + 2*x + 1
+        else:
             y -= 1
+            p_k = p_k + 2*x + 1 - 2*y
         glFlush()
         glutSwapBuffers()
 

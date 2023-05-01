@@ -12,8 +12,10 @@ def ellipse():
     x = 0
     y = r_y
     glClear(GL_COLOR_BUFFER_BIT)
-    glColor3f(0.0,1.0,1.0)
-    # glPointSize(3)
+    glColor3f(1.0,1.0,1.0)
+    glPointSize(2)
+
+    p_k = r_y**2 - ((r_x**2) * r_y) + ((1/4)*r_x**2)
     
     while(x <= r_x and y >= 0):
         print(x,y)
@@ -28,14 +30,18 @@ def ellipse():
         
         if (2*(r_y**2)*x < 2*(r_x**2)*y):
             x += 1
-            d_parameter = (r_x**2 * (y-1/2)**2) + (r_y**2 * x**2) - (r_x**2 * r_y**2)
-            if d_parameter > 0:
+            if p_k < 0:
+                p_k = p_k + (2* r_y**2 * x) + (r_y**2)
+            else:
                 y -= 1
+                p_k = p_k + (2* r_y**2 * x) - (2* r_x**2 * y) + (r_y**2)
         else:
             y -= 1
-            d_parameter = (r_x**2 * y**2) + (r_y**2 * (x+1/2)**2) - (r_x**2 * r_y**2)
-            if d_parameter < 0:
+            if p_k <= 0:
                 x += 1
+                p_k = p_k + (2* r_y**2 * x) - (2* r_x**2 * y) + (r_x**2)
+            else:
+                p_k = p_k - (2* r_x**2 * y) + (r_x**2)
 
 def main():
     glutInit()
