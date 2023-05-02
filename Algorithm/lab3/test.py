@@ -42,44 +42,44 @@ class BSTTestCase(unittest.TestCase):
         self.assertEqual(bsTree.search(10), "Value for 10")
         self.assertEqual(bsTree.search(15), "Value for 15")
 
-    # def test_inorder(self):
-    #     """
-    #     tests for inorder_walk
-    #     """
-    #     actual_output = self.bst.inorder_walk()
-    #     expected_output = [1, 5, 8, 10, 30, 40, 45, 52]
+    def test_inorder(self):
+        """
+        tests for inorder_walk
+        """
+        actual_output = self.bst.inorder_walk()
+        expected_output = [1, 5, 8, 10, 30, 40, 45, 52]
 
-    #     self.assertListEqual(actual_output, expected_output)
+        self.assertListEqual(actual_output, expected_output)
 
-    #     # Add one node
-    #     self.bst.add(25, "Value for 25")
-    #     # Inorder traversal must return a different sequence
-    #     self.assertListEqual(self.bst.inorder_walk(), [1, 5, 8, 10, 25, 30, 40, 45, 52])
+        # Add one node
+        self.bst.add(25, "Value for 25")
+        # Inorder traversal must return a different sequence
+        self.assertListEqual(self.bst.inorder_walk(), [1, 5, 8, 10, 25, 30, 40, 45, 52])
 
-    # def test_postorder(self):
-    #     """
-    #     tests for postorder_walk
-    #     """
-    #     actual_output = self.bst.postorder_walk()
-    #     expected_output = [1, 8, 5, 30, 45, 40, 52, 10]
+    def test_postorder(self):
+        """
+        tests for postorder_walk
+        """
+        actual_output = self.bst.postorder_walk()
+        expected_output = [1, 8, 5, 30, 45, 40, 52, 10]
         
-    #     self.assertListEqual(actual_output, expected_output)
+        self.assertListEqual(actual_output, expected_output)
 
-    #     # Add one node
-    #     self.bst.add(25, "Value for 25")
-    #     # Postorder traversal must return a different sequence
-    #     self.assertListEqual(self.bst.postorder_walk(), [1, 8, 5, 25, 30, 45, 40, 52, 10])
+        # Add one node
+        self.bst.add(25, "Value for 25")
+        # Postorder traversal must return a different sequence
+        self.assertListEqual(self.bst.postorder_walk(), [1, 8, 5, 25, 30, 45, 40, 52, 10])
 
-    # def test_preorder(self):
-    #     """
-    #     tests for preorder_walk
-    #     """
-    #     self.assertListEqual(self.bst.preorder_walk(), [10, 5, 1, 8, 52, 40, 30, 45])
+    def test_preorder(self):
+        """
+        tests for preorder_walk
+        """
+        self.assertListEqual(self.bst.preorder_walk(), [10, 5, 1, 8, 52, 40, 30, 45])
 
-    #     # Add one node
-    #     self.bst.add(25, "Value for 25")
-    #     # Preorder traversal must return a different sequence
-    #     self.assertListEqual(self.bst.preorder_walk(), [10, 5, 1, 8, 52, 40, 30, 25, 45])
+        # Add one node
+        self.bst.add(25, "Value for 25")
+        # Preorder traversal must return a different sequence
+        self.assertListEqual(self.bst.preorder_walk(), [10, 5, 1, 8, 52, 40, 30, 25, 45])
     
     def test_search(self):
         """
@@ -94,15 +94,15 @@ class BSTTestCase(unittest.TestCase):
         self.bst.add(90, "Value for 90")
         self.assertEqual(self.bst.search(90), "Value for 90")
 
-    # def test_remove(self):
-    #     """
-    #     tests for remove
-    #     """
-    #     self.bst.remove(40)
+    def test_remove(self):
+        """
+        tests for remove
+        """
+        self.bst.remove(40)
         
-    #     self.assertEqual(self.bst.size(), 7)
-    #     self.assertListEqual(self.bst.inorder_walk(), [1, 5, 8, 10, 30, 45, 52])
-    #     self.assertListEqual(self.bst.preorder_walk(), [10, 5, 1, 8, 52, 30, 45])
+        self.assertEqual(self.bst.size(), 7)
+        self.assertListEqual(self.bst.inorder_walk(), [1, 5, 8, 10, 30, 45, 52])
+        self.assertListEqual(self.bst.preorder_walk(), [10, 5, 1, 8, 52, 30, 45])
 
     def test_smallest(self):
         """
