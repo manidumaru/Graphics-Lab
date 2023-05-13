@@ -5,6 +5,9 @@ class BinarySearchTree:
         self.root = None
         self.treeSize = 0
     
+    def head(self):
+        return self.root.value
+    
     def size(self):
         return self.treeSize
 
@@ -138,7 +141,6 @@ class BinarySearchTree:
             else:
                 to_replace = to_delete.left
                 to_delete.left = None
-            
             to_delete.key = to_replace.key
             to_delete.value = to_replace.value
             self.treeSize -= 1
@@ -146,13 +148,11 @@ class BinarySearchTree:
         if (to_delete.right != None and to_delete.left != None): ################## if two children ###########################
             to_replace = to_delete.left
             to_replace_parent = None
-
             if to_replace.right == None:
                 to_delete.key = to_replace.key
                 to_delete.value = to_replace.value
                 to_delete.left = None
                 self.treeSize -= 1
-
             else:    
                 while(to_replace.right != None):
                     to_replace_parent = to_replace
