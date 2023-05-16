@@ -1,9 +1,14 @@
 
-a = 4
-b = 7
+a = {
+    "mass": 1,
+    "rad": 4
+}
 
-def abc(a,b):
-    return (a+6), (b+1)
+def test(obj):
+    obj["mass"] = 100
+    obj["rad"] = 500
+    return
 
-result = abc(a,b)
-print(result[0])
+print(a)
+test(a)
+print(a)
