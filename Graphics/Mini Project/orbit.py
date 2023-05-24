@@ -12,9 +12,9 @@ def display(planet, x, y, z):
         theta = 3.1415926 * float(i) / float(180)
         x = r * math.cos(theta)
         y = r * math.sin(theta)
-        pox = x + planet["x"]
-        poy = y + planet["y"]
-        glVertex2f(pox , poy)
+        position_x = x + planet["x"]
+        position_y = y + planet["y"]
+        glVertex2f(position_x , position_y)
     glEnd()
     glFlush()
 
@@ -68,7 +68,7 @@ def draw():
         data.jupiter["x"] += jupiter_displacement[0]
         data.jupiter["y"] += jupiter_displacement[1]
 
-        ################################################################## Tracing Earth Path ##################################################################
+        ################################################################# Tracing Earth Path ##################################################################
         # earth_position = (data.earth["x"], data.earth["y"])
         # if counter % 45 == 0:
         #     data.earth_route.append(earth_position)

@@ -13,8 +13,8 @@ def LCS(w1, w2, m , n):
     return result
 
 
-w1 = "president"
-w2 = "providence"
+w1 = "AC"
+w2 = "TAGC"
 
 mat = [[0 for _ in range(len(w2) + 1)] for _ in range(len(w1) + 1)]
 length = LCS(w1,w2,0,0)
