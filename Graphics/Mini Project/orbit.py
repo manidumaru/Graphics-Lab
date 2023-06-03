@@ -68,20 +68,20 @@ def draw():
         data.jupiter["x"] += jupiter_displacement[0]
         data.jupiter["y"] += jupiter_displacement[1]
 
-        ################################################################# Tracing Earth Path ##################################################################
-        # earth_position = (data.earth["x"], data.earth["y"])
-        # if counter % 45 == 0:
-        #     data.earth_route.append(earth_position)
-        # counter += 1
-        # if (len(data.earth_route) > 8):
-        #     data.earth_route.pop()
-        # for position in data.earth_route:
-        #     glColor3f(0.419,0.576,0.839)
-        #     glPointSize(2)
-        #     glBegin(GL_POINTS)
-        #     glVertex2f(position[0], position[1])
-        #     glEnd()
-        #     glFlush()
+        ################################################################ Tracing Earth Path ##################################################################
+        earth_position = (data.earth["x"], data.earth["y"])
+        if counter % 45 == 0:
+            data.earth_route.append(earth_position)
+        counter += 1
+        if (len(data.earth_route) > 8):
+            data.earth_route.pop()
+        for position in data.earth_route:
+            glColor3f(0.419,0.576,0.839)
+            glPointSize(2)
+            glBegin(GL_POINTS)
+            glVertex2f(position[0], position[1])
+            glEnd()
+            glFlush()
 
         glutSwapBuffers()
         time.sleep(0.01)
