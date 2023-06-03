@@ -7,7 +7,6 @@ def insertion(arr):
             j = j-1
     return arr
 
-
 def mergeSort(arr):
 	if len(arr) > 1:
 
@@ -46,7 +45,7 @@ def printList(arr):
 
 
 
-# arr = [12, 11, 13, 5, 6, 7]
+arr = [12, 11, 13, 5, 6, 7]
 # print(insertion(arr))
 
 # print("Given array is:")
