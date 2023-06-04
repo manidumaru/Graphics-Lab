@@ -40,7 +40,7 @@ def displacement_calculator(planet):
 def draw():
     counter = 0
     while(True):
-        glClear(GL_COLOR_BUFFER_BIT)
+        # glClear(GL_COLOR_BUFFER_BIT)
         display(data.sun, 0.98, 0.83, 0.25)
         display(data.mercury,0.81, 0.86, 0.83)
         display(data.venus, 0.64, 0.48, 0.105)
